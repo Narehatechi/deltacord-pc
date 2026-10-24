@@ -1,0 +1,43 @@
+name: Release
+on:
+    push:
+        branches:
+            - main
+
+env:
+    FORCE_COLOR: true
+    GH_TOKEN: ${{ github.token }}
+
+permissions:
+    contents: write
+
+jobs:
+    Build:
+        name: Build Deltacord
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v7
+
+            - name: Setup PNPM
+              uses: pnpm/setup@v2.1.0
+              with:
+                  runtime: node@v24
+                  require-lockfile: true
+
+            - name: Build
+              run: pnpm buildStandalone
+
+            - name: Collect files to be released
+              run: |
+                  mkdir dist/release
+                  cp dist/desktop.asar dist/release
+                  cp dist/desktop/* dist/release
+                  find dist/release -size 0 -delete
+                  rm -f dist/release/package.json dist/release/*.map
+
+            - name: Publish the latest release
+              run: |
+                  gh release view latest > /dev/null 2>&1 || gh release create latest --title "Deltacord" --notes "The latest Deltacord build." --target "$GITHUB_SHA"
+                  gh release edit latest --title "Deltacord $GITHUB_SHA"
+                  gh release upload latest --clobber dist/release/*
