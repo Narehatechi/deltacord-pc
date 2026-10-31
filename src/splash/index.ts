@@ -136,6 +136,8 @@ function frame(now: number) {
         x += g.measureText(part).width;
     });
 
+    if (t >= PULSE_START) drawSparkle(g, t, x0, y, wordWidth, size, dpr);
+
     shown += (target - shown) * 0.08;
     if (target >= 1 && shown > 0.995) shown = 1;
 
@@ -190,6 +192,86 @@ function frame(now: number) {
             g.restore();
         }
     }
+}
+
+/** Twinkling + sparkles around the word: x and y (fractions of the word box), phase, speed. */
+const SPARKLE_COLOURS = ["#fff", "#ff0", "#6ff", "#f7d"];
+const SPARKLES = (() => {
+    let seed = 0xDE17A;
+    const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    return Array.from({ length: 14 }, () => [
+        random() * 1.1 - 0.05,
+        random() < 0.5 ? -0.35 - random() * 0.45 : 1.1 + random() * 0.45,
+        random() * 6.28,
+        0.6 + random() * 0.8,
+    ]);
+})();
+
+/**
+ * The Deltacord Manager title's sparkle, once the word is complete: a rainbow shine sweeping
+ * across the letters, + sparkles twinkling around them, and a quick red/cyan glitch now and then.
+ */
+function drawSparkle(g: CanvasRenderingContext2D, t: number, x0: number, y: number, wordWidth: number, size: number, dpr: number) {
+    const since = (t - PULSE_START) / 1000;
+    const intro = fade(t, PULSE_START, 400);
+    const capHeight = size * 1152 / 2048;
+    const top = y - capHeight / 2;
+    const bottom = y + capHeight / 2;
+
+    g.save();
+
+    // Shine: a band (white, then the rainbow, then white) that crosses the word every ~2.5s.
+    const sweep = (since * 0.4) % 1.8 - 0.4;
+    const band = wordWidth * 0.45;
+    const centre = x0 + sweep * wordWidth;
+    const shine = g.createLinearGradient(centre - band, top - capHeight * 0.4, centre + band, bottom + capHeight * 0.4);
+    const stops: [number, string][] = [
+        [0, "rgba(255,255,255,0)"], [0.18, "#fff"], [0.3, "#f57"], [0.4, "#fd3"], [0.5, "#5fa"],
+        [0.6, "#5cf"], [0.7, "#c7f"], [0.82, "#fff"], [1, "rgba(255,255,255,0)"],
+    ];
+    for (const [at, colour] of stops) shine.addColorStop(at, colour);
+    g.fillStyle = shine;
+    g.shadowColor = "rgba(255,255,255,0.8)";
+    g.shadowBlur = size * 0.08 + dpr * 2;
+    g.globalAlpha = 0.9 * intro;
+    g.fillText(WORD, x0, y);
+
+    // Glitch: every 6 seconds, for a moment, the word splits red and cyan and shakes.
+    const cycle = since % 6;
+    if (since > 1 && cycle < 0.18) {
+        const shake = dpr * 3 * Math.sin(cycle * 180);
+        const gap = size * 0.035;
+        g.shadowBlur = 0;
+        g.globalAlpha = 0.67;
+        g.fillStyle = "#f00";
+        g.fillText(WORD, x0 - gap + shake, y);
+        g.fillStyle = "#0ff";
+        g.fillText(WORD, x0 + gap - shake, y);
+    }
+
+    // Sparkles: + shapes that grow, twinkle and fade around the word.
+    g.lineCap = "round";
+    g.lineWidth = Math.max(dpr * 1.6, size * 0.025);
+    SPARKLES.forEach(([fx, fy, phase, speed], i) => {
+        const wave = Math.sin(since * 2.4 * speed + phase);
+        if (wave <= 0) return;
+        const sx = x0 + fx * wordWidth;
+        const sy = top + fy * capHeight;
+        const arm = size * 0.11 * wave * speed;
+        const colour = SPARKLE_COLOURS[i % SPARKLE_COLOURS.length];
+        g.strokeStyle = colour;
+        g.shadowColor = colour;
+        g.shadowBlur = arm * 0.9 + dpr;
+        g.globalAlpha = wave * intro;
+        g.beginPath();
+        g.moveTo(sx - arm, sy);
+        g.lineTo(sx + arm, sy);
+        g.moveTo(sx, sy - arm);
+        g.lineTo(sx, sy + arm);
+        g.stroke();
+    });
+
+    g.restore();
 }
 
 async function mount() {
