@@ -74,6 +74,7 @@ export interface Settings {
     disableMinSize: boolean;
     nativeTitleBar: boolean;
     startupAnimation: boolean;
+    startupAnimationStyle: string;
     plugins: {
         [plugin: string]: {
             enabled: boolean;
@@ -125,6 +126,7 @@ const DefaultSettings: Settings = {
     disableMinSize: false,
     nativeTitleBar: false,
     startupAnimation: true,
+    startupAnimationStyle: "upgraded",
     plugins: {},
 
     uiElements: {
