@@ -1,0 +1,32 @@
+@keyframes nr-pop { from { opacity:0; transform: translateY(10px) scale(.97) } to { opacity:1; transform:none } }
+@keyframes nr-wiggle { 0%,100%{transform:none} 30%{transform:rotate(-6deg)} 60%{transform:rotate(5deg)} }
+@keyframes nr-pulse { 0%,100%{box-shadow:0 0 0 0 #e4c04a00} 50%{box-shadow:0 0 0 6px #e4c04a33} }
+
+.nr-pop { animation: nr-pop .32s cubic-bezier(.2,.8,.2,1); }
+
+[id*="chat-messages"] [class*="avatar"]:hover {
+    transform: scale(1.08) rotate(-3deg);
+    transition: transform .18s cubic-bezier(.2,.8,.2,1);
+}
+[id*="chat-messages"] [class*="avatar"] { transition: transform .18s ease; }
+
+[id*="chat-messages"] [class*="link"]:hover,
+[id*="chat-messages"] [class*="interactive"]:hover {
+    transition: transform .15s ease, filter .15s ease;
+}
+
+[id*="chat-messages"] [class*="listItem"] [class*="wrapper"]:hover {
+    animation: nr-wiggle .35s ease;
+}
+
+[class*="channelTextArea"]:focus-within {
+    animation: nr-pulse 1.2s ease-in-out infinite;
+}
+
+[id*="chat-messages"] [class*="reaction"]:hover { transform: scale(1.15); transition: transform .12s ease; }
+[id*="chat-messages"] [class*="emoji"]:hover { transform: scale(1.2) rotate(-8deg); transition: transform .12s ease; }
+
+[class*="bar_"] [class*="unread"],
+[class*="mentionsBadge"] {
+    animation: nr-pulse 1.4s ease-in-out infinite;
+}

@@ -1,0 +1,158 @@
+@keyframes narelogs-boom {
+    0% { transform: scale(.86) rotate(-1deg); filter: brightness(2.4) saturate(1.8); }
+    35% { transform: scale(1.06) rotate(1deg); filter: brightness(1.5); }
+    100% { transform: none; filter: none; }
+}
+@keyframes narelogs-quake {
+    0%, 100% { transform: translate(0, 0) rotate(0); }
+    10% { transform: translate(-8px, 2px) rotate(-1deg); }
+    20% { transform: translate(8px, -2px) rotate(1deg); }
+    30% { transform: translate(-6px, 0) rotate(.5deg); }
+    40% { transform: translate(6px, 2px) rotate(-.5deg); }
+    55% { transform: translate(-3px, -1px); }
+    70% { transform: translate(3px, 1px); }
+}
+@keyframes narelogs-strobe {
+    0% { box-shadow: inset 0 0 0 0 transparent, 0 0 0 0 transparent; }
+    12% { box-shadow: inset 0 0 0 300px color-mix(in srgb, var(--narelogs-rose) 40%, transparent), 0 0 40px 8px color-mix(in srgb, var(--narelogs-rose) 80%, transparent); }
+    24% { box-shadow: inset 0 0 0 300px color-mix(in srgb, var(--narelogs-gold) 35%, transparent), 0 0 48px 10px color-mix(in srgb, var(--narelogs-gold) 80%, transparent); }
+    36% { box-shadow: inset 0 0 0 300px color-mix(in srgb, var(--narelogs-rose) 40%, transparent), 0 0 36px 8px color-mix(in srgb, var(--narelogs-rose) 70%, transparent); }
+    55% { box-shadow: inset 0 0 0 80px color-mix(in srgb, var(--narelogs-rose) 14%, transparent), 0 0 18px 2px color-mix(in srgb, var(--narelogs-rose) 50%, transparent); }
+    100% { box-shadow: inset 3px 0 0 var(--narelogs-rose), 0 0 0 0 transparent; }
+}
+@keyframes narelogs-neon {
+    0%, 100% { text-shadow: 0 0 4px var(--narelogs-gold), 0 0 12px var(--narelogs-rose), 0 0 22px var(--narelogs-gold); }
+    50% { text-shadow: 0 0 10px #fff, 0 0 24px var(--narelogs-gold), 0 0 36px var(--narelogs-rose); }
+}
+@keyframes narelogs-scan {
+    0% { background-position: -150% 0, 0 0; }
+    100% { background-position: 250% 0, 0 0; }
+}
+@keyframes narelogs-spark {
+    0% { opacity: 0; transform: scale(.4) rotate(-12deg); }
+    30% { opacity: 1; transform: scale(1.15) rotate(8deg); }
+    100% { opacity: 1; transform: none; }
+}
+@keyframes narelogs-bar {
+    0% { transform: scaleY(0); filter: brightness(3); }
+    60% { transform: scaleY(1.4); filter: brightness(2); }
+    100% { transform: scaleY(1); filter: none; }
+}
+@keyframes narelogs-ring {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--narelogs-gold) 80%, transparent); }
+    100% { box-shadow: 0 0 0 18px transparent; }
+}
+@keyframes narelogs-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+@keyframes narelogs-glint {
+    0% { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+    30% { opacity: .7; }
+    100% { transform: translateX(220%) skewX(-18deg); opacity: 0; }
+}
+
+html.narelogs-root {
+    --narelogs-gold: #e4c04a;
+    --narelogs-rose: #8b3a44;
+    --narelogs-cream: #fff6e4;
+    --narelogs-speed: 1;
+}
+
+.messagelogger-deleted,
+.narelogs-deleted {
+    --text-default: var(--narelogs-gold);
+    --text-muted: color-mix(in srgb, var(--narelogs-rose) 55%, var(--narelogs-cream));
+    --text-link: var(--narelogs-gold);
+}
+
+html.narelogs-strobe .messagelogger-deleted,
+html.narelogs-strobe .narelogs-deleted {
+    animation: narelogs-strobe calc(1.25s / var(--narelogs-speed)) ease-out;
+}
+html.narelogs-quake .messagelogger-deleted,
+html.narelogs-quake .narelogs-deleted {
+    animation-name: narelogs-strobe, narelogs-quake;
+    animation-duration: calc(1.25s / var(--narelogs-speed)), calc(.55s / var(--narelogs-speed));
+    animation-timing-function: ease-out, ease-out;
+}
+html.narelogs-boom.narelogs-quake .messagelogger-deleted,
+html.narelogs-boom.narelogs-quake .narelogs-deleted {
+    animation-name: narelogs-strobe, narelogs-quake, narelogs-boom;
+    animation-duration: calc(1.25s / var(--narelogs-speed)), calc(.55s / var(--narelogs-speed)), calc(.45s / var(--narelogs-speed));
+    animation-timing-function: ease-out, ease-out, ease-out;
+}
+html.narelogs-boom:not(.narelogs-quake) .messagelogger-deleted,
+html.narelogs-boom:not(.narelogs-quake) .narelogs-deleted {
+    animation-name: narelogs-strobe, narelogs-boom;
+    animation-duration: calc(1.25s / var(--narelogs-speed)), calc(.45s / var(--narelogs-speed));
+}
+html.narelogs-neon .messagelogger-deleted,
+html.narelogs-neon .narelogs-deleted,
+html.narelogs-neon .narelogs-gone-kicker {
+    animation: narelogs-neon calc(1.8s / var(--narelogs-speed)) ease-in-out infinite;
+}
+html.narelogs-ring .messagelogger-deleted img,
+html.narelogs-ring .narelogs-deleted img {
+    animation: narelogs-ring calc(1.1s / var(--narelogs-speed)) ease-out;
+}
+
+.narelogs-gone {
+    position: relative;
+    overflow: hidden;
+    margin: 6px 0 2px;
+    padding: 8px 10px 8px 14px;
+    border-radius: 6px;
+    color: var(--narelogs-cream);
+    animation: narelogs-spark calc(.45s / var(--narelogs-speed)) ease-out;
+    background:
+        linear-gradient(115deg, transparent 0%, color-mix(in srgb, var(--narelogs-gold) 35%, transparent) 18%, color-mix(in srgb, var(--narelogs-rose) 40%, transparent) 36%, transparent 55%),
+        linear-gradient(90deg, color-mix(in srgb, var(--narelogs-rose) 35%, transparent), #3f4a3288 40%, color-mix(in srgb, var(--narelogs-gold) 20%, transparent));
+    border: 1px solid color-mix(in srgb, var(--narelogs-gold) 40%, transparent);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--narelogs-rose) 40%, transparent), inset 0 0 18px color-mix(in srgb, var(--narelogs-gold) 14%, transparent);
+}
+html.narelogs-scan .narelogs-gone {
+    background-size: 180% 100%, 100% 100%;
+    animation: narelogs-scan calc(1.6s / var(--narelogs-speed)) linear infinite;
+}
+.narelogs-gone-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    transform-origin: top;
+    animation: narelogs-bar calc(.35s / var(--narelogs-speed)) ease-out;
+    background: linear-gradient(var(--narelogs-cream), var(--narelogs-gold), var(--narelogs-rose), var(--narelogs-gold));
+}
+.narelogs-gone-kicker {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--narelogs-gold);
+    animation: narelogs-float 2.4s ease-in-out infinite;
+}
+.narelogs-gone-text {
+    display: block;
+    margin-top: 2px;
+    color: var(--narelogs-cream);
+}
+html.narelogs-glint .narelogs-gone::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 35%), transparent);
+    animation: narelogs-glint calc(1.4s / var(--narelogs-speed)) ease-out;
+}
+html.narelogs-hide-box .narelogs-gone {
+    display: none;
+}
+
+.messagelogger-deleted,
+.narelogs-deleted {
+    border-left: 3px solid var(--narelogs-gold);
+    border-left-color: var(--narelogs-rose);
+    box-shadow: 0 0 28px color-mix(in srgb, var(--narelogs-rose) 65%, transparent), 0 0 8px color-mix(in srgb, var(--narelogs-gold) 50%, transparent);
+}

@@ -14,6 +14,10 @@ It keeps all of Equicord's plugins and settings. Deltacord stores its own data i
 
 The animation lives in `src/splash`. `splashProgress(progress, text)` moves the bar and `splashReadyWhen(check)` says when Discord is ready; both are called from `src/Vencord.ts`.
 
+## Coming from Narecord
+
+On first launch, if Deltacord has no settings yet and a `Narecord` folder sits next to Deltacord's data folder, it copies your settings (including which plugins are on), QuickCSS, themes and message logs over. Nothing in the Narecord folder is changed or deleted. Narecord's own plugins (Abyss, Hideout, Incinerator, NareMotion, NareNotes, NarehateBadge, Narelogs, Nnaa and narePerf) are built into Deltacord from `src/userplugins`.
+
 ## Building
 
 You need Node.js and [pnpm](https://pnpm.io).

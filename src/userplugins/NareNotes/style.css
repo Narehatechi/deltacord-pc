@@ -1,0 +1,75 @@
+.vc-narenotes-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vc-narenotes-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background: var(--background-secondary);
+    border: 1px solid color-mix(in srgb, #e4c04a 40%, transparent);
+    border-radius: 8px;
+}
+
+.vc-narenotes-row {
+    display: flex;
+    gap: 8px;
+}
+
+.vc-narenotes-row > * {
+    flex: 1;
+    min-width: 0;
+}
+
+.vc-narenotes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.vc-narenotes-card {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    background: var(--background-secondary);
+    border-radius: 8px;
+    border-left: 3px solid #e4c04a;
+}
+
+.vc-narenotes-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.vc-narenotes-title {
+    color: #e4c04a;
+    font-weight: 700;
+}
+
+.vc-narenotes-meta {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.vc-narenotes-note {
+    margin-top: 4px;
+    color: var(--text-normal);
+    white-space: pre-wrap;
+}
+
+.vc-narenotes-pic {
+    display: block;
+    max-width: 160px;
+    max-height: 100px;
+    margin-top: 6px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.vc-narenotes-empty {
+    color: var(--text-muted);
+}

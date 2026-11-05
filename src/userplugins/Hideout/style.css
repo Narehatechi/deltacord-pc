@@ -1,0 +1,24 @@
+:root { --nr-bark:#1a1713; --nr-wood:#221e18; --nr-plank:#2a251e; --nr-ink:#110f0c; --nr-cream:#e8dcc6; --nr-foam:#f4ead8; --nr-muted:#9a8b74; --nr-sage:#6c7a56; --nr-moss:#4d5a3c; --nr-rose:#8b3a44; }
+.nr-hideout-surfaces.theme-dark, .nr-hideout-surfaces .theme-dark {
+    --background-primary: var(--nr-bark) !important;
+    --background-secondary: var(--nr-wood) !important;
+    --background-tertiary: var(--nr-ink) !important;
+    --channeltextarea-background: var(--nr-plank) !important;
+    --background-mentioned: rgb(108 122 86 / 12%) !important;
+}
+.nr-hideout-text.theme-dark, .nr-hideout-text .theme-dark {
+    --text-normal: var(--nr-cream) !important;
+    --text-muted: var(--nr-muted) !important;
+    --header-primary: var(--nr-foam) !important;
+}
+.nr-hideout-sage.theme-dark, .nr-hideout-sage .theme-dark {
+    --brand-500: var(--nr-sage) !important;
+    --text-link: #c5d0b4 !important;
+}
+.nr-hideout-box [class*="channelTextArea"] {
+    background: var(--nr-plank) !important;
+    border: 1px solid #3a3328 !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+}
+::selection { background: #5865f24d; color: inherit; }

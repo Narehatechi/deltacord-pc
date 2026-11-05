@@ -1,0 +1,4 @@
+/* Charged incinerator rail — canvas does the beam; this is the afterglow. */
+[class*="channelTextArea"].nr-incinerator-charge {
+    box-shadow: 0 0 16px rgb(30 110 255 / 45%), inset 0 0 10px rgb(80 190 255 / 25%);
+}
