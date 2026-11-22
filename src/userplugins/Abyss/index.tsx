@@ -27,7 +27,7 @@ const channelMenu: NavContextMenuPatchCallback = (children, props: any) => {
     children.push(
         <Menu.MenuItem id="narecord-layer" label="Abyss layer">
             {LAYERS.map(L => (
-                <Menu.MenuItem id={"narecord-layer-"+L.n} label={L.name+" — "+L.place} action={async () => {
+                <Menu.MenuItem key={L.n} id={"narecord-layer-"+L.n} label={L.name+" — "+L.place} action={async () => {
                     cache = { ...cache, [channel.id]: L.n };
                     await DataStore.set(LAYER_KEY, cache);
                     showToast({ text: "This channel is "+L.name+" now.", variant: "success" });
