@@ -10,7 +10,7 @@ import { isPluginEnabled } from "@api/PluginManager";
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { showToast, Toasts } from "@webpack/common";
+import { showToast } from "@webpack/common";
 
 import "./style.css";
 
@@ -283,7 +283,7 @@ export default definePlugin({
                 guildId: guildId ?? m?.guildId ?? null,
                 at: Date.now()
             });
-            if (settings.store.toastDeletes) showToast("Nnaa. This one was deleted.", Toasts.Type.MESSAGE);
+            if (settings.store.toastDeletes) showToast({ text: "Nnaa. This one was deleted.", variant: "default" });
             requestAnimationFrame(paint);
         },
         MESSAGE_UPDATE({ message }: any) {

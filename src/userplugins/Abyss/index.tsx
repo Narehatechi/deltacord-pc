@@ -2,7 +2,7 @@ import { ApplicationCommandInputType, ApplicationCommandOptionType, findOption }
 import { addContextMenuPatch, removeContextMenuPatch, type NavContextMenuPatchCallback } from "@api/ContextMenu";
 import * as DataStore from "@api/DataStore";
 import definePlugin from "@utils/types";
-import { Menu, SelectedChannelStore, showToast, Toasts } from "@webpack/common";
+import { Menu, SelectedChannelStore, showToast } from "@webpack/common";
 const LAYER_KEY = "narecord-layers";
 const RELIC_KEY = "narecord-relics";
 const LAYERS = [
@@ -30,7 +30,7 @@ const channelMenu: NavContextMenuPatchCallback = (children, props: any) => {
                 <Menu.MenuItem id={"narecord-layer-"+L.n} label={L.name+" — "+L.place} action={async () => {
                     cache = { ...cache, [channel.id]: L.n };
                     await DataStore.set(LAYER_KEY, cache);
-                    showToast("This channel is "+L.name+" now.", Toasts.Type.SUCCESS);
+                    showToast({ text: "This channel is "+L.name+" now.", variant: "success" });
                 }} />
             ))}
         </Menu.MenuItem>

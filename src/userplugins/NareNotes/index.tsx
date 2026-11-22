@@ -17,7 +17,7 @@ import { parseUrl } from "@utils/misc";
 import { useForceUpdater } from "@utils/react";
 import definePlugin, { IconComponent } from "@utils/types";
 import { CommandArgument } from "@vencord/discord-types";
-import { MaskedLink, Modal, openModal, showToast, TextArea, TextInput, Toasts, UserStore, useEffect, useState } from "@webpack/common";
+import { MaskedLink, Modal, openModal, showToast, TextArea, TextInput, UserStore, useEffect, useState } from "@webpack/common";
 
 import style from "./style.css?managed";
 
@@ -149,9 +149,9 @@ function NotebookPanel() {
                             setTitle("");
                             setNote("");
                             setImage("");
-                            showToast(msg.replace(/\*\*/g, ""), Toasts.Type.SUCCESS);
+                            showToast({ text: msg.replace(/\*\*/g, ""), variant: "success" });
                         } else {
-                            showToast(msg, Toasts.Type.FAILURE);
+                            showToast({ text: msg, variant: "critical" });
                         }
                     }}
                 >
@@ -179,7 +179,7 @@ function NotebookPanel() {
                                 size="small"
                                 variant="dangerSecondary"
                                 onClick={async () => {
-                                    showToast((await dropFind(row.id)).replace(/\*\*/g, ""), Toasts.Type.MESSAGE);
+                                    showToast({ text: (await dropFind(row.id)).replace(/\*\*/g, ""), variant: "default" });
                                 }}
                             >
                                 Drop

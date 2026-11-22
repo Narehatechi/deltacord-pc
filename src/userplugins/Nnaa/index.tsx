@@ -5,7 +5,7 @@ import { ApplicationCommandInputType } from "@api/Commands";
 import { definePluginSettings } from "@api/Settings";
 import { copyToClipboard } from "@utils/clipboard";
 import definePlugin, { OptionType } from "@utils/types";
-import { ChannelStore, ComponentDispatch, Menu, showToast, Toasts } from "@webpack/common";
+import { ChannelStore, ComponentDispatch, Menu, showToast } from "@webpack/common";
 
 const settings = definePluginSettings({
     enabled: { type: OptionType.BOOLEAN, description: "Rewrite outgoing messages", default: false },
@@ -33,7 +33,7 @@ function Ears() {
 const menu: NavContextMenuPatchCallback = (children, props: any) => {
     const message = props?.message;
     if (!message?.content) return;
-    children.push(<Menu.MenuItem id="narecord-copy-nnaa" label="Copy as Nnaa" action={() => { copyToClipboard(toNanachi(message.content)); showToast("Copied nnaa~", Toasts.Type.SUCCESS); }} />);
+    children.push(<Menu.MenuItem id="narecord-copy-nnaa" label="Copy as Nnaa" action={() => { copyToClipboard(toNanachi(message.content)); showToast({ text: "Copied nnaa~", variant: "success" }); }} />);
 };
 export default definePlugin({
     name: "Nnaa",
@@ -48,7 +48,7 @@ export default definePlugin({
     ],
     start() {
         addChatBarButton("narecord-nnaa-toggle", () => (
-            <ChatBarButton tooltip={settings.store.enabled ? "Nnaa on" : "Nnaa off"} onClick={() => { settings.store.enabled = !settings.store.enabled; showToast(settings.store.enabled ? "Nnaa on" : "Nnaa off", Toasts.Type.MESSAGE); }}><Ears /></ChatBarButton>
+            <ChatBarButton tooltip={settings.store.enabled ? "Nnaa on" : "Nnaa off"} onClick={() => { settings.store.enabled = !settings.store.enabled; showToast({ text: settings.store.enabled ? "Nnaa on" : "Nnaa off", variant: "default" }); }}><Ears /></ChatBarButton>
         ), Ears);
         addChatBarButton("narecord-nnaa-stamp", () => (
             <ChatBarButton tooltip="Insert Nnaa~" onClick={() => ComponentDispatch.dispatchToLastSubscribed("INSERT_TEXT", { rawText: "Nnaa~ " })}><Ears /></ChatBarButton>
@@ -57,7 +57,7 @@ export default definePlugin({
             if (!message.content) return null;
             const channel = ChannelStore.getChannel(message.channel_id);
             if (!channel) return null;
-            return { label: "Copy as Nnaa", icon: Ears, message, channel, onClick: () => { copyToClipboard(toNanachi(message.content)); showToast("Copied nnaa~", Toasts.Type.SUCCESS); } };
+            return { label: "Copy as Nnaa", icon: Ears, message, channel, onClick: () => { copyToClipboard(toNanachi(message.content)); showToast({ text: "Copied nnaa~", variant: "success" }); } };
         }, Ears);
         addContextMenuPatch("message", menu);
     },
