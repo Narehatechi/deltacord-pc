@@ -256,11 +256,11 @@ export default definePlugin({
             { name: "image", description: "Optional picture URL", type: ApplicationCommandOptionType.STRING, required: false }
         ],
         async execute(opts: CommandArgument[]) {
-            const action = findOption(opts, "action", "");
-            const title = findOption(opts, "title", "");
-            const finder = findOption(opts, "finder", "");
-            const note = findOption(opts, "note", "");
-            const image = findOption(opts, "image", "");
+            const action = findOption<string>(opts, "action", "");
+            const title = findOption<string>(opts, "title", "");
+            const finder = findOption<string>(opts, "finder", "");
+            const note = findOption<string>(opts, "note", "");
+            const image = findOption<string>(opts, "image", "");
             if (action === "list") return { content: listText() };
             if (action === "add") return { content: await stashFind(title, finder, note, image) };
             if (action === "drop") return { content: await dropFind(title) };
