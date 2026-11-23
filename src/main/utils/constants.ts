@@ -84,7 +84,7 @@ if (IS_DEV) {
                 app.relaunch();
                 app.exit(0);
             } catch (err) {
-                console.error("[Equicord] Failed to copy prod data:", err);
+                console.error("[Deltacord] Failed to copy prod data:", err);
             }
         }, 5000);
     }

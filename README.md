@@ -39,6 +39,10 @@ Deltacord's own plugins live in `src/deltacordplugins`:
 - **DeltacordTheme** is on by default: Deltacord's look (black, white and orange, or red with Crimson) in the Determination Mono font. You can switch the palette, keep Discord's colors, or turn the font off in its settings.
 - **DeltacordPacks** saves your plugins, their settings, QuickCSS and theme links as one `.deltapack` file to share or back up, and loads other people's.
 
+## Syncing with Equicord
+
+Deltacord follows upstream Equicord so it keeps working when Discord changes. After merging a new Equicord, run `python3 scripts/rebrand.py`: it renames Equicord to Deltacord in the text you see (settings, menus, messages, logs) and leaves code names, links, credits and Equicord's own badges alone.
+
 ## Building
 
 You need Node.js and [pnpm](https://pnpm.io).

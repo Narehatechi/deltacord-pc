@@ -553,7 +553,7 @@ const RenderPopout = ErrorBoundary.wrap(({ channel, name, windowKey }: { channel
         <PopoutWindow
             withTitleBar
             windowKey={windowKey}
-            title={name || "Equicord"}
+            title={name || "Deltacord"}
             channelId={channel.id}
         >
             <div className={cl("window")}>

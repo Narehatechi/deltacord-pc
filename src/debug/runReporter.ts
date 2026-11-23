@@ -148,7 +148,7 @@ async function runReporter() {
 }
 
 // Imported in webpack for reporterData, wrap to avoid running reporter
-// Run after the Equicord object has been created.
-// We need to add extra properties to it, and it is only created after all of Equicord code has ran
+// Run after the Deltacord object has been created.
+// We need to add extra properties to it, and it is only created after all of Deltacord code has ran
 if (IS_REPORTER)
     setTimeout(runReporter, 0);

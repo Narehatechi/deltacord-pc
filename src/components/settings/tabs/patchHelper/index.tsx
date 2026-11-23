@@ -110,7 +110,7 @@ function PatchHelper() {
         <SettingsTab>
             <Heading className={Margins.top16}>Patch Helper</Heading>
             <Paragraph className={Margins.bottom16}>
-                A developer tool to help you create patches for Equicord plugins.
+                A developer tool to help you create patches for Deltacord plugins.
             </Paragraph>
 
             <Heading className={Margins.bottom8}>Full Patch</Heading>
