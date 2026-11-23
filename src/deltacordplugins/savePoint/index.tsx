@@ -69,7 +69,7 @@ export default definePlugin({
             required: false
         }],
         async execute(args, ctx) {
-            if (findOption(args, "action", "list") === "clear") {
+            if (findOption<string>(args, "action", "list") === "clear") {
                 await DataStore.del(KEY);
                 sendBotMessage(ctx.channel.id, { content: "* Your save points are gone." });
                 return;
