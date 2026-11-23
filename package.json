@@ -8,13 +8,11 @@
         "url": "https://github.com/Narehatechi/deltacord-pc/issues"
     },
     "license": "GPL-3.0-or-later",
-    "author": "Equicord",
+    "author": "Narehatechi",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Narehatechi/deltacord-pc.git"
     },
-    "license": "GPL-3.0-or-later",
-    "author": "Narehatechi",
     "scripts": {
         "build": "node --require=./scripts/suppressExperimentalWarnings.js scripts/build/build.mjs",
         "buildStandalone": "pnpm build --standalone",
