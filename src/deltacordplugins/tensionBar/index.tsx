@@ -7,7 +7,7 @@
 import { ChatBarButton, ChatBarButtonFactory } from "@api/ChatButtons";
 import { Devs } from "@utils/constants";
 import definePlugin, { IconProps } from "@utils/types";
-import { DraftStore, DraftType, showToast, Toasts, UserStore, useStateFromStores } from "@webpack/common";
+import { DraftStore, DraftType, showToast, UserStore, useStateFromStores } from "@webpack/common";
 
 const maxLength = () => UserStore.getCurrentUser()?.premiumType === 2 ? 4000 : 2000;
 
@@ -29,7 +29,7 @@ const TensionButton: ChatBarButtonFactory = ({ channel, isAnyChat }) => {
     return (
         <ChatBarButton
             tooltip={`TP ${percent}%`}
-            onClick={() => showToast(`TP ${percent}%: ${length} of ${maxLength()} characters`, Toasts.Type.MESSAGE)}
+            onClick={() => showToast({ text: `TP ${percent}%: ${length} of ${maxLength()} characters` })}
         >
             <Gauge percent={percent} />
         </ChatBarButton>

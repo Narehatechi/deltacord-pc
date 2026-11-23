@@ -10,7 +10,7 @@ import * as DataStore from "@api/DataStore";
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { Message } from "@vencord/discord-types";
-import { ChannelStore, Menu, showToast, Toasts } from "@webpack/common";
+import { ChannelStore, Menu, showToast } from "@webpack/common";
 
 const KEY = "SavePoint_saves";
 const MAX_SAVES = 50;
@@ -35,7 +35,7 @@ async function save(message: Message) {
         savedAt: Date.now()
     });
     await DataStore.set(KEY, saves.slice(0, MAX_SAVES));
-    showToast("The power of this message shines within you. Saved.", Toasts.Type.SUCCESS);
+    showToast({ text: "The power of this message shines within you. Saved.", variant: "success" });
 }
 
 const messageMenu: NavContextMenuPatchCallback = (children, { message }: { message: Message; }) => {

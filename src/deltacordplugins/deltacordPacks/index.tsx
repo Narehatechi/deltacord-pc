@@ -13,7 +13,7 @@ import { Margins } from "@utils/margins";
 import { relaunch } from "@utils/native";
 import definePlugin from "@utils/types";
 import { chooseFile, saveFile } from "@utils/web";
-import { Alerts, showToast, Toasts } from "@webpack/common";
+import { Alerts, showToast } from "@webpack/common";
 
 const logger = new Logger("DeltacordPacks");
 
@@ -59,7 +59,7 @@ async function importPack() {
         logger.error("Couldn't read the pack", err);
     }
     if (!isPack(pack)) {
-        showToast("That file isn't a Deltacord pack.", Toasts.Type.FAILURE);
+        showToast({ text: "That file isn't a Deltacord pack.", variant: "critical" });
         return;
     }
 
