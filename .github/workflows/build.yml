@@ -36,8 +36,18 @@ jobs:
                   find dist/release -size 0 -delete
                   rm -f dist/release/package.json dist/release/*.map
 
+            - name: Setup Go
+              uses: actions/setup-go@v5
+              with:
+                  go-version: "1.24"
+                  cache: false
+
+            - name: Build the Windows installer
+              working-directory: installer
+              run: GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o ../dist/release/DeltacordInstaller.exe .
+
             - name: Publish the latest release
               run: |
                   gh release view latest > /dev/null 2>&1 || gh release create latest --title "Deltacord" --notes "The latest Deltacord build." --target "$GITHUB_SHA"
-                  gh release edit latest --title "Deltacord $GITHUB_SHA"
+                  gh release edit latest --title "Deltacord $GITHUB_SHA" --notes "To install Deltacord, download **DeltacordInstaller.exe** below and double-click it. Run it again any time to update or uninstall."
                   gh release upload latest --clobber dist/release/*

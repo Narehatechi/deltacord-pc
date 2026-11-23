@@ -2,6 +2,15 @@
 
 Deltacord is a Discord desktop client mod, built on [Equicord](https://github.com/Equicord/Equicord) (itself a fork of [Vencord](https://github.com/Vendicated/Vencord)). It is the PC counterpart of the Deltacord Android mod, and it plays the same startup animation while Discord loads: DEL, then TA, then CORD, glowing in on black.
 
+## Download
+
+**[Download DeltacordInstaller.exe](https://github.com/Narehatechi/deltacord-pc/releases/download/latest/DeltacordInstaller.exe)** (Windows)
+
+1. Double-click `DeltacordInstaller.exe`. If Windows says it protected your PC, click **More info**, then **Run anyway** (the installer isn't code-signed yet).
+2. Press Enter. It closes Discord, installs Deltacord and opens Discord again.
+
+That's it. Deltacord keeps itself up to date. To remove it, run the installer again, type `U` and press Enter.
+
 It keeps all of Equicord's plugins and settings. Deltacord stores its own data in a `Deltacord` folder next to Discord's, so it won't touch an existing Equicord setup.
 
 ## Startup animation
@@ -27,6 +36,7 @@ Deltacord's own plugins live in `src/deltacordplugins`:
 - **SavePoint** adds "Save Point" to the message menu; `/savepoint` lists your saves with jump links.
 - **ActMenu** adds `/act` to check, spare, fight or hug someone like a Deltarune battle.
 - **TensionBar** puts a TP gauge in the chat bar that fills as your message nears the length limit.
+- **DeltacordTheme** is on by default: Deltacord's look (black, white and orange, or red with Crimson) in the Determination Mono font. You can switch the palette, keep Discord's colors, or turn the font off in its settings.
 - **DeltacordPacks** saves your plugins, their settings, QuickCSS and theme links as one `.deltapack` file to share or back up, and loads other people's.
 
 ## Building
@@ -40,15 +50,9 @@ pnpm build
 
 Output goes to `dist/desktop`.
 
-## Installing
+## Installing a local build
 
-For now Deltacord is injected with Equicord's installer. After building:
-
-```sh
-pnpm inject
-```
-
-To remove it again, run `pnpm uninject`. A Deltacord installer is planned, so this will change.
+The installer in `installer/` (Go) downloads the latest release and patches Discord with Equicord's installer in dev-install mode, pointed at Deltacord's `desktop.asar`. To try a build of your own instead, run `pnpm inject` after building, and `pnpm uninject` to remove it.
 
 Every push to `main` builds Deltacord and publishes it to the `latest` release, which is also where the in-app updater looks for new versions.
 
