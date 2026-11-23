@@ -1,4 +1,4 @@
-import { addProfileBadge, BadgePosition, removeProfileBadge, type ProfileBadge } from "@api/Badges";
+import { addProfileBadge, BadgePosition, type ProfileBadge, removeProfileBadge } from "@api/Badges";
 import { definePluginSettings } from "@api/Settings";
 import definePlugin, { OptionType } from "@utils/types";
 import { showToast, UserStore } from "@webpack/common";

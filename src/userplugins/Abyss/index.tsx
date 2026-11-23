@@ -1,5 +1,5 @@
 import { ApplicationCommandInputType, ApplicationCommandOptionType, findOption } from "@api/Commands";
-import { addContextMenuPatch, removeContextMenuPatch, type NavContextMenuPatchCallback } from "@api/ContextMenu";
+import { addContextMenuPatch, type NavContextMenuPatchCallback, removeContextMenuPatch } from "@api/ContextMenu";
 import * as DataStore from "@api/DataStore";
 import definePlugin from "@utils/types";
 import { Menu, SelectedChannelStore, showToast } from "@webpack/common";

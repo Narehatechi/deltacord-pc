@@ -1,6 +1,7 @@
+import "./style.css";
+
 import { definePluginSettings } from "@api/Settings";
 import definePlugin, { OptionType } from "@utils/types";
-import "./style.css";
 const settings = definePluginSettings({
     surfaces: { type: OptionType.BOOLEAN, description: "Dark bark surfaces", default: true, restartNeeded: true },
     creamText: { type: OptionType.BOOLEAN, description: "Cream text", default: true, restartNeeded: true },

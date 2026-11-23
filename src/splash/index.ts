@@ -718,7 +718,7 @@ const SCENES: Record<string, Scene> = {
         draw(t) {
             motes(t, 50, 0.7);
             if (t < 2700) {
-                const p = clamp(t / 2700), R = lerp(L.across * 0.4, 0, easeIn(p));
+                const p = clamp(t / 2700);
                 const angle = q => 1.2 * q * 2.7 + 6 * 2.7 * q * q * q / 3;
                 const hp = L.size * 0.035, appear = fade(t, 0, 500);
                 SOULS.forEach((colour, k) => {

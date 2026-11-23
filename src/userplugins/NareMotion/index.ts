@@ -1,5 +1,6 @@
-import definePlugin from "@utils/types";
 import "./style.css";
+
+import definePlugin from "@utils/types";
 function pop(e: any) {
     const msg = e?.message;
     if (!msg?.id || !msg.channel_id) return;

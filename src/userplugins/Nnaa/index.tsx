@@ -1,7 +1,7 @@
 import { addChatBarButton, ChatBarButton, removeChatBarButton } from "@api/ChatButtons";
-import { addContextMenuPatch, removeContextMenuPatch, type NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { addMessagePopoverButton, removeMessagePopoverButton } from "@api/MessagePopover";
 import { ApplicationCommandInputType } from "@api/Commands";
+import { addContextMenuPatch, type NavContextMenuPatchCallback, removeContextMenuPatch } from "@api/ContextMenu";
+import { addMessagePopoverButton, removeMessagePopoverButton } from "@api/MessagePopover";
 import { definePluginSettings } from "@api/Settings";
 import { copyToClipboard } from "@utils/clipboard";
 import definePlugin, { OptionType } from "@utils/types";

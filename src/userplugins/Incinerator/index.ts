@@ -1,5 +1,6 @@
-import definePlugin from "@utils/types";
 import "./style.css";
+
+import definePlugin from "@utils/types";
 let lock = false;
 function fire() {
     if (lock) return;
