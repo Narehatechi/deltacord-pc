@@ -18,6 +18,17 @@ The animation lives in `src/splash`. `splashProgress(progress, text)` moves the 
 
 On first launch, if Deltacord has no settings yet and a `Narecord` folder sits next to Deltacord's data folder, it copies your settings (including which plugins are on), QuickCSS, themes and message logs over. Nothing in the Narecord folder is changed or deleted. Narecord's own plugins (Abyss, Hideout, Incinerator, NareMotion, NareNotes, NarehateBadge, Narelogs, Nnaa and narePerf) are built into Deltacord from `src/userplugins`.
 
+## Deltacord plugins
+
+Deltacord's own plugins live in `src/deltacordplugins`:
+
+- **Deltavoice** plays a Deltarune style text voice as you type, with a choice of voice, pitch and volume.
+- **DeltaText** adds `/star` and `/dialogue` to write messages as game dialogue, and can star every message you send.
+- **SavePoint** adds "Save Point" to the message menu; `/savepoint` lists your saves with jump links.
+- **ActMenu** adds `/act` to check, spare, fight or hug someone like a Deltarune battle.
+- **TensionBar** puts a TP gauge in the chat bar that fills as your message nears the length limit.
+- **DeltacordPacks** saves your plugins, their settings, QuickCSS and theme links as one `.deltapack` file to share or back up, and loads other people's.
+
 ## Building
 
 You need Node.js and [pnpm](https://pnpm.io).
