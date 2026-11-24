@@ -37,6 +37,7 @@ Deltacord's own plugins live in `src/deltacordplugins`:
 - **ActMenu** adds `/act` to check, spare, fight or hug someone like a Deltarune battle.
 - **TensionBar** puts a TP gauge in the chat bar that fills as your message nears the length limit.
 - **DeltacordTheme** is on by default: Deltacord's look (black, white and orange, or red with Crimson) in the Determination Mono font. You can switch the palette, keep Discord's colors, or turn the font off in its settings.
+- **Deltalogger** keeps deleted messages, every edit and ghost pings, even after a restart. Open it from the top bar, the toolbox, `/deltalogger` or by right clicking a person, channel or server. You can search, filter by kind, jump to where a message was, export the log, and choose what to log, who to ignore, how long to keep it and when to notify you.
 - **DeltacordPacks** saves your plugins, their settings, QuickCSS and theme links as one `.deltapack` file to share or back up, and loads other people's.
 
 ## Syncing with Equicord
