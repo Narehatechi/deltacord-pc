@@ -1,6 +1,7 @@
-import "./style.css";
-
 import definePlugin from "@utils/types";
+
+import style from "./style.css?managed";
+
 let lock = false;
 function fire() {
     if (lock) return;
@@ -87,6 +88,7 @@ export default definePlugin({
     name: "Incinerator",
     description: "Charged incinerator rail across the message bar.",
     authors: [{ name: "Narecord", id: 0n }],
+    managedStyle: style,
     dependencies: ["MessageEventsAPI"],
     onBeforeMessageSend() { fire(); }
 });

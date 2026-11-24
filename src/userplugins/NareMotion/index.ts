@@ -1,6 +1,7 @@
-import "./style.css";
-
 import definePlugin from "@utils/types";
+
+import style from "./style.css?managed";
+
 function pop(e: any) {
     const msg = e?.message;
     if (!msg?.id || !msg.channel_id) return;
@@ -17,5 +18,6 @@ export default definePlugin({
     name: "NareMotion",
     description: "Pops new messages, wiggles hovers, pulses the chat box. Separate from Incinerator.",
     authors: [{ name: "Narecord", id: 0n }],
+    managedStyle: style,
     flux: { MESSAGE_CREATE: pop }
 });

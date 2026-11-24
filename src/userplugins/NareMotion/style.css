@@ -66,7 +66,6 @@
     transition: transform 0.12s ease;
 }
 
-[class*="bar_"] [class*="unread"],
 [class*="mentionsBadge"] {
     animation: nr-pulse 1.4s ease-in-out infinite;
 }

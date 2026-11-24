@@ -12,7 +12,7 @@ import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { showToast } from "@webpack/common";
 
-import "./style.css";
+import style from "./style.css?managed";
 
 const STORE = "narecord-narelogs";
 const CACHE_CAP = 600;
@@ -156,6 +156,7 @@ export default definePlugin({
     name: "Narelogs",
     description: "Independent abyss logger. Keeps deleted messages in place with den styling and journals content — no other plugins required.",
     authors: [Devs.Narehatechi],
+    managedStyle: style,
     settings,
     dependencies: ["CommandsAPI", "MessageEventsAPI"],
     patches: [

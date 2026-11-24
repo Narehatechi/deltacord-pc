@@ -1,7 +1,8 @@
-import "./style.css";
-
 import { definePluginSettings } from "@api/Settings";
 import definePlugin, { OptionType } from "@utils/types";
+
+import style from "./style.css?managed";
+
 const settings = definePluginSettings({
     surfaces: { type: OptionType.BOOLEAN, description: "Dark bark surfaces", default: true, restartNeeded: true },
     creamText: { type: OptionType.BOOLEAN, description: "Cream text", default: true, restartNeeded: true },
@@ -19,6 +20,7 @@ export default definePlugin({
     name: "Hideout",
     description: "Nanachi hideout look.",
     authors: [{ name: "Narecord", id: 0n }],
+    managedStyle: style,
     settings, start: sync,
     stop() { document.documentElement.classList.remove("nr-hideout-surfaces","nr-hideout-text","nr-hideout-sage","nr-hideout-box"); }
 });
